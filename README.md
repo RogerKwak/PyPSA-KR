@@ -2,8 +2,7 @@
 
 
 
-Image/PyPSA-KR.jpg
-
+![PyPSA-KR Base Network] (https://github.com/RogerKwak/PyPSA-KR/blob/main/Image/PyPSA-KR.jpg)
 
 
 
