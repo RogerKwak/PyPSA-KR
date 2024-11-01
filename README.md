@@ -11,7 +11,11 @@ Working in Process
 
 ![PyPSA-KR Base Network](https://github.com/RogerKwak/PyPSA-KR/blob/main/Image/PyPSA-KR.jpg)
 
-
+# Contributing and Support
+We are advancing this project. 
+-  This project is made by Kyuil Kwak (The graduate school of Energy & Environment, Korea University).
+-  Contact: kwakke91@korea.ac.kr 
+-  https://energyinnovation.korea.ac.kr/
 
 # License
 
