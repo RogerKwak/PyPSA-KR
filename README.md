@@ -13,9 +13,9 @@ Working in Process
 
 # Contributing and Support
 We are advancing this project. 
--  This project is made by Kyuil Kwak (The graduate school of Energy & Environment, Korea University).
--  Contact: kwakke91@korea.ac.kr 
--  https://energyinnovation.korea.ac.kr/
+-  This project is made by 'Energy Innovation Lab'(The graduate school of Energy & Environment, Korea University).
+-  Contact: kwakke91@gmail.com / jrwoo@korea.ac.kr
+-  Website: https://energyinnovation.korea.ac.kr/
 
 # License
 
