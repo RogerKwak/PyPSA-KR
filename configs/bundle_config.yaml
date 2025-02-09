@@ -1,0 +1,328 @@
+# SPDX-FileCopyrightText:  PyPSA-Earth and PyPSA-Eur Authors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# File describing the data bundle configurations that can be downloaded
+# by using the retrieve_databundle fule
+
+# Each bundle shall have the following structure:
+
+# .. code:: yaml
+
+#   bundle_name:  # name of the bundle
+#     countries: [country code, region code or country list]  # list of countries represented in the databundle
+#     [tutorial: true/false]  # (optional, default false) whether the bundle is a tutorial or not
+#     category: common/resources/data/cutouts  # category of data contained in the bundle:
+#     destination: "."  # folder where to unzip the files with respect to the repository root (\"\" or \".\")
+#     urls:  # list of urls by source, e.g. zenodo or google
+#       zenodo: {zenodo url}  # key to download data from zenodo
+#       gdrive: {google url}  # key to download data from google drive
+#       protectedplanet: {url}  # key to download data from protected planet
+#       direct: {url}  # key to download data directly from a url; if unzip option is enabled data are unzipped
+#       post:  # key to download data using an url post request; if unzip option is enabled data are unzipped
+#         url: {url}
+#         [post arguments]
+#     [unzip: true/false]  # (optional, default false) used in direct download technique to automatically unzip files
+#     output: [...] # list of outputs of the bundle used in snakemake
+#     [disable_by_opt:]  # option to disable outputs from the bundle; it contains a dictionary of options, each one with
+#                        # each one with its output. When "all" is specified, the entire bundle is not executed
+#       [{option}: [outputs]/all]  # list of options and the outputs to remove, or "all" corresponding to ignore everything
+
+databundles:
+  # tutorial bundle specific for Nigeria and Benin only
+  bundle_tutorial_NGBJ:
+    countries: [NG, BJ]
+    tutorial: true
+    category: data
+    destination: "data"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/bundle_tutorial_NGBJ.zip?download=1
+      gdrive: https://drive.google.com/file/d/1Vb1ISjhy7iwTTZYeezGd6S4nLt-EDGme/view?usp=drive_link
+    output:
+    - data/gebco/GEBCO_2021_TID.nc
+    - data/copernicus/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif
+
+  # tutorial bundle specific for Botswana only
+  bundle_tutorial_BW:
+    countries: [BW]
+    tutorial: true
+    category: data
+    destination: "data"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/bundle_tutorial_BW.zip?download=1
+      gdrive: https://drive.google.com/file/d/19IXvTD8gVSzgTInL85ta7QjaNI8ZPCCY/view?usp=drive_link
+    output:
+    - data/gebco/GEBCO_2021_TID.nc
+    - data/copernicus/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif
+
+  # tutorial bundle specific for Morocco only
+  bundle_tutorial_MA:
+    countries: [MA]
+    tutorial: true
+    category: data
+    destination: "data"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/bundle_tutorial_MA.zip?download=1
+      gdrive: https://drive.google.com/file/d/1VGzE8ZJHAvAQ9X44QNSX4rH3QF7Yi37D/view?usp=drive_link
+    output:
+    - data/gebco/GEBCO_2021_TID.nc
+    - data/copernicus/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif
+
+  # load tutorial hydrobasins bundle for Africa only
+  bundle_tutorial_hydrobasins:
+    countries: [Africa]
+    tutorial: true
+    category: hydrobasins
+    destination: "data/hydrobasins"
+    urls:
+      hydrobasins:
+        base_url: https://data.hydrosheds.org/file/HydroBASINS/standard/
+        suffixes: ["af"]
+    unzip: true
+    output:
+    - data/hydrobasins/hybas_world.shp
+
+  # tutorial bundle specific for Nigeria and Benin only
+  bundle_cutouts_tutorial_NGBJ:
+    countries: [NG, BJ]
+    tutorial: true
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/bundle_cutouts_tutorial_NGBJ.zip?download=1
+      gdrive: https://drive.google.com/file/d/1xnomHdXf_c5STrf7jtDiuRlN2zW0FSVC/view?usp=drive_link
+    output: [cutouts/cutout-2013-era5-tutorial.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # tutorial bundle specific for Botswana only
+  bundle_cutouts_tutorial_BW:
+    countries: [BW]
+    tutorial: true
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/bundle_cutouts_tutorial_BW.zip?download=1
+      gdrive: https://drive.google.com/file/d/1DDQAtnIDM0FNC3vCldfHeH__IpTbyIJt/view?usp=drive_link
+    output: [cutouts/cutout-2013-era5-tutorial.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # tutorial bundle specific for Morocco only
+  bundle_cutouts_tutorial_MA:
+    countries: [MA]
+    tutorial: true
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/bundle_cutouts_tutorial_MA.zip?download=1
+      gdrive: https://drive.google.com/file/d/1j5v2f4E756jmDMa707QvdNJq3xM4bYUk/view?usp=drive_link
+    output: [cutouts/cutout-2013-era5-tutorial.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # Cutout of Kazakhstan for CI test of pypsa-kz-data repo, only 5 MB
+  bundle_cutouts_test_KZ:
+    countries: [KZ]
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      zenodo: https://sandbox.zenodo.org/record/1239739/files/tutorial_cutouts_KZ.zip?download=1
+    output: [cutouts/cutout-2013-era5-tutorial.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # tutorial bundle for all African countries
+  bundle_tutorial_data_common:
+    countries: [Africa]
+    tutorial: true
+    category: common
+    destination: "data"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/3853/files/tutorial_data_general.zip?download=1
+      gdrive: https://drive.google.com/file/d/1nRLrs_kP0qVl-IHC4BFLjpoKa3HLk2Py/view
+    output:
+    - data/eez/eez_v11.gpkg
+    - data/ssp2-2.6/2030/era5_2013/Africa.nc
+    - data/ssp2-2.6/2030/era5_2013/Asia.nc
+    - data/ssp2-2.6/2030/era5_2013/Europe.nc
+    - data/ssp2-2.6/2030/era5_2013/NorthAmerica.nc
+    - data/ssp2-2.6/2030/era5_2013/SouthAmerica.nc
+    - data/ssp2-2.6/2030/era5_2013/Oceania.nc
+    - data/landcover/world_protected_area/protected_areas_tutorial.shp
+
+  # global data for hydrobasins
+  bundle_hydrobasins:
+    countries: [Earth]
+    tutorial: false
+    category: hydrobasins
+    destination: "data/hydrobasins"
+    urls:
+      hydrobasins:
+        base_url: https://data.hydrosheds.org/file/HydroBASINS/standard/
+        suffixes: ["af", "ar", "as", "au", "eu", "gr", "na", "sa", "si"]
+    unzip: true
+    output:
+    - data/hydrobasins/hybas_world.shp
+
+  # data bundle containing the data of the data folder common to all regions of the world
+  bundle_data_earth:
+    countries: [Earth]
+    category: common
+    destination: "data"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/13539/files/bundle_data_earth.zip?download=1
+      gdrive: https://drive.google.com/file/d/1zU4VRRBDVIVqoykhK9lnOAr60unVm_x2/view?usp=drive_link
+    output:
+    - data/eez/eez_v11.gpkg
+    - data/gebco/GEBCO_2021_TID.nc
+    - data/copernicus/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif
+    - data/ssp2-2.6/2030/era5_2013/Africa.nc
+    - data/ssp2-2.6/2030/era5_2013/Asia.nc
+    - data/ssp2-2.6/2030/era5_2013/Europe.nc
+    - data/ssp2-2.6/2030/era5_2013/NorthAmerica.nc
+    - data/ssp2-2.6/2030/era5_2013/SouthAmerica.nc
+    - data/ssp2-2.6/2030/era5_2013/Oceania.nc
+
+  # resources bundle containing the resources folder for Africa only
+  bundle_natura_earth:
+    countries: [Earth]
+    category: natura
+    destination: "data/natura/"
+    urls:
+      # zenodo:
+      gdrive: https://drive.google.com/file/d/1H-Y7p8UgnbEzJgo9qPc54BpDXS8loX7Y/view?usp=drive_link
+    output:
+    - data/natura/natura.tiff
+
+  # # data bundle of the data folder for the african continent
+  # bundle_landclassification:
+  #   countries: [Earth]
+  #   category: copernicus
+  #   destination: "data/copernicus"
+  #   urls:
+  #     direct: https://zenodo.org/record/3939050/files/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif
+  #   output: [data/copernicus/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif]
+
+  # bundle_gebco:
+  #   countries: [Earth]
+  #   category: gebco
+  #   destination: "data/gebco"
+  #   urls:
+  #     direct: https://www.bodc.ac.uk/data/open_download/gebco/gebco_2021/zip/
+  #   unzip: True
+  #   output: [data/gebco/GEBCO_2021_TID.nc]
+
+  # bundle_eez:
+  #   countries: [Earth]
+  #   category: eez
+  #   destination: "data/eez"
+  #   urls:
+  #     post:
+  #       url: https://www.marineregions.org/download_file.php?name=World_EEZ_v11_20191118_gpkg.zip
+  #       name: NAME
+  #       organisation: ORGANISATION
+  #       email: youremail@email.com
+  #       country: Italy
+  #       user_category: academia
+  #       purpose_category: Research
+  #       agree: 1
+  #   output: [data/gebco/GEBCO_2021_TID.nc]
+
+  # cutouts bundle of the cutouts folder for the mainland African continent
+  # Note: some offshore countries e.g. CV or SC are not covered. Size: about 10GB (zipped)
+  bundle_cutouts_mainland_africa:
+    countries: [Africa]
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/13539/files/bundle_cutouts_africa.zip?download=1
+      gdrive: https://drive.google.com/file/d/1WHv5Dm1GtrDZj-AxJZd3T-NMIBXty3eV/view?usp=drive_link
+    output: [cutouts/cutout-2013-era5.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # # cutouts bundle of the cutouts folder for the whole African continent,
+  # # including UN countries offshore mainland Africa. Size about 20GB (zipped)
+  # bundle_cutouts_whole_africa:
+  #   countries: [Africa]
+  #   category: cutouts
+  #   destination: "cutouts"
+  #   urls:
+  #     # zenodo:
+  #     gdrive: https://drive.google.com/file/d/1O_9vQ2SDluJ_LtFdRBeoo1Pz213n5HAN/view?usp=sharing
+  #   output: [cutouts/cutout-2013-era5.nc]
+  #   disable_by_opt:
+  #     build_cutout: [all]
+
+  # cutouts bundle of the cutouts folder for the North American continent
+  # Note: this includes nearly the entire north emisphere [long +-180, lat 1-85]. Size about 81GB (zipped)
+  bundle_cutouts_northamerica:
+    countries: [NorthAmerica, Europe]
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      zenodo: https://sandbox.zenodo.org/records/13539/files/natura_wpda_CC0.zip?download=1
+      gdrive: https://drive.google.com/file/d/1Ew7rQT0VNBqJW1AUrOrOP2IJKSJS7Uoy/view?usp=sharing
+    output: [cutouts/cutout-2013-era5.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # cutouts bundle of the cutouts folder for the Asian continent, except Russia
+  # Size about 30GB (zipped)
+  bundle_cutouts_asia:
+    countries: ["KVR", "WAS", "FEAR", "SEAR", "CASR", "SASR", "ASEAN", "MEAR"]
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      # zenodo:
+      gdrive: https://drive.google.com/file/d/11-Ax9tVks7oPjrZwG5v3C0x4OmMT_Pv8/view?usp=sharing
+    output: [cutouts/cutout-2013-era5.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # # cutouts bundle of the cutouts folder for the entire globe [long +-180, lat +-89.9]
+  # # commented by default to avoid downloading by mistake. Size about 170GB (zipped)
+  # bundle_cutouts_earth:
+  #   countries: [Earth]
+  #   category: cutouts
+  #   destination: "cutouts"
+  #   urls:
+  #     # zenodo:
+  #     gdrive: https://drive.google.com/file/d/1C9Q5qU_Wu_gj78H5G3TT2thGA-hKheVf/view?usp=drive_link
+  #   output: [cutouts/cutout-2013-era5.nc]
+  #   disable_by_opt:
+  #     build_cutout: [all]
+
+  # Cutout for South America, approx 18 GB
+  bundle_cutouts_southamerica:
+    countries: [SouthAmerica]
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      # zenodo:
+      gdrive: https://drive.google.com/file/d/1Jeu2Vzoq4mNDUKSvIviN8HqSFx5gl61b/view?usp=sharing
+    output: [cutouts/cutout-2013-era5.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # cutouts bundle of the cutouts folder for Western Asia
+  # Size about 3.8 GB (zipped)
+  bundle_cutouts_westernasia:
+    countries: [WAS]
+    category: cutouts
+    destination: "cutouts"
+    urls:
+      gdrive: https://drive.google.com/file/d/1as-fZS4Z70CfDf3bR4i9t9S5-5pBqURP/view?usp=sharing
+    output: [cutouts/cutout-2013-era5.nc]
+    disable_by_opt:
+      build_cutout: [all]
+
+  # data bundle containing the protected data for the whole world
+  bundle_landcover_earth:
+    countries: [Earth]
+    category: landcover
+    destination: "data/landcover/world_protected_areas"
+    urls:
+      protectedplanet: https://d1gam3xoknrgr2.cloudfront.net/current/WDPA_{month:s}{year:d}_Public_shp.zip
+    output: [data/landcover/world_protected_areas/*]
