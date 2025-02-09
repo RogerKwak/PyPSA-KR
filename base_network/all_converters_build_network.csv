@@ -1,5 +1,0 @@
-,index,converter_id,bus0,bus1,underground,under_construction,country,geometry
-0,0,convert_124_220,220,219,False,False,KR,"LINESTRING (126.4861 33.4703, 126.4851 33.4693)"
-1,1,convert_212_331,331,330,False,False,KR,"LINESTRING (126.5927 34.3693, 126.5917 34.3683)"
-2,2,convert_437_578,578,577,False,False,KR,"LINESTRING (126.6036 33.5301, 126.6026 33.5291)"
-3,3,convert_444_586,586,585,False,False,KR,"LINESTRING (126.1886 34.3868, 126.1876 34.3858)"
