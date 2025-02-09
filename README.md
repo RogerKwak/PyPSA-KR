@@ -2,7 +2,6 @@
 
 ## See [PyPSA-Earth docs](https://pypsa-earth.readthedocs.io/en/stable/introduction.html) for installation and instructions.
 
-Working in Process
 
 - Introduce the PyPSA model to Korea for the first time by developing PyPSA-KR and conducting an in-depth analysis of Korean energy system.
 - PyPSA is an open-source energy system model which is useful for regional grid analysis and optimization due to its high spatial and temporal resolution
@@ -11,6 +10,7 @@ Working in Process
 
 
 ![PyPSA-KR Base Network](https://github.com/RogerKwak/PyPSA-KR/blob/main/Image/KR_network.jpg)
+
 
 # Contributing and Support
 We are advancing this project. 
