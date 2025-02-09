@@ -1,5 +1,7 @@
 # PyPSA-KR: An open-source energy system modelling of Korean electricity network
 
+## See [PyPSA-Earth docs](https://pypsa-earth.readthedocs.io/en/stable/introduction.html) for installation and instructions.
+
 Working in Process
 
 - Introduce the PyPSA model to Korea for the first time by developing PyPSA-KR and conducting an in-depth analysis of Korean energy system.
