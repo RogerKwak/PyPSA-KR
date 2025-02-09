@@ -10,7 +10,7 @@ Working in Process
 - This research presents a systematic approach for expanding renewable energy, transmission, and ESS along with their deployment strategies that contributes to the national long-term energy strategy
 
 
-![PyPSA-KR Base Network](https://github.com/RogerKwak/PyPSA-KR/blob/main/Image/PyPSA-KR.jpg)
+![PyPSA-KR Base Network](https://github.com/RogerKwak/PyPSA-KR/blob/main/Image/KR_network.jpg)
 
 # Contributing and Support
 We are advancing this project. 
